@@ -8,6 +8,7 @@ game.*
 *.zip
 *.tar.gz
 /game
+.bin
 
 # ignore dir
 .vscode/

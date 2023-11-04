@@ -8,7 +8,7 @@ An arcade space shooter using lua with tic80 fantasy console.
 3. Make sure IS_EXPORT in main.lua is set to false
 4. Run
 
-# export
+## export
 1. Set IS_EXPORT in main.lua to true
 2. Run lua_stich.py
 3. Load output file game.lua and test in tic-80

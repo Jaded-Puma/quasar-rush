@@ -20,7 +20,7 @@ META = {
 -- BUILD SETTINGS
 -- Since tic-80 requires a single file for export
 -- this is set after combining all lua files into a single one.
-IS_EXPORT = true
+IS_EXPORT = false
 
 DEMO_MODE = false
 
@@ -41,6 +41,7 @@ end
 -- SET LIB PATH
 -- this is where project is localed
 if not IS_EXPORT then
+    -- !!! set your project path here
     local PATH = ";/home/puma/.local/share/com.nesbox.tic/TIC-80/quasar-rush/?.lua"
     package.path = package.path .. PATH
 end

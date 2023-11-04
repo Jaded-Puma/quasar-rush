@@ -5,7 +5,7 @@ game.*
 *.png
 *.gpl
 *.gif
-
+game
 
 # ignore dir
 .vscode/

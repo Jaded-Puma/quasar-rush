@@ -1,0 +1,11 @@
+# ignore files
+*.sh
+game.*
+*.wav
+*.png
+*.gpl
+*.gif
+
+
+# ignore dir
+.vscode/

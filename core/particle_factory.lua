@@ -1,3 +1,5 @@
+-- A Factory pattern to spawn particles
+
 local data = function(maxtime, color_table)
     return {
         maxtime = maxtime,

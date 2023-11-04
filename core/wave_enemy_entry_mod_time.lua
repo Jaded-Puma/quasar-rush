@@ -1,3 +1,5 @@
+-- Class to spwawn enemies based on frame count intervals
+
 WaveEnemyEntryModTime = lazy.extend("WaveEnemyEntryModTime", WaveEnemyEntryBase)
 
 function WaveEnemyEntryModTime:constructor(Klass, spawn_number, spawn_data, spawn_time_max)

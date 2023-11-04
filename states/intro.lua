@@ -1,3 +1,5 @@
+-- Intro state: Main screen in the game
+
 StateIntro = lazy.extend("StateLevel", State)
 
 local TEXT_START = "START GAME"

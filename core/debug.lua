@@ -1,3 +1,5 @@
+-- Depricated file
+
 DebugMode = lazy.class("DebugMode")
 
 function DebugMode:constructor() 

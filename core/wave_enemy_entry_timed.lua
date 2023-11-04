@@ -1,3 +1,5 @@
+-- spawn enemies exactly at a time interval
+
 WaveEnemyEntryTimed = lazy.extend("WaveEnemyEntryTimed", WaveEnemyEntryBase)
 
 local GLOBAL_START_TIMEOUT = 30

@@ -1,3 +1,5 @@
+-- Rendering logic for "level"
+
 StateLevelRenderer = lazy.class("StateLevelRenderer")
 
 function StateLevelRenderer:constructor(logic)

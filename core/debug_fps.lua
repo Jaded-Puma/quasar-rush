@@ -1,3 +1,5 @@
+-- Golbal var to keep track of FPS
+
 FPS = {
     lastTime = tstamp(),
     frame = 0,

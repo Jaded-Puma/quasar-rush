@@ -1,3 +1,5 @@
+-- Container class for logic anbd renderer for "level"
+
 StateLevel = lazy.extend("StateLevel", State)
 
 function StateLevel:constructor()

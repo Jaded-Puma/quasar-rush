@@ -1,3 +1,5 @@
+-- Class to handle wave spawning
+
 Wave = lazy.class("Wave")
 
 function Wave:constructor(enemy_entries, set_boss_mode, set_quasar_mode)

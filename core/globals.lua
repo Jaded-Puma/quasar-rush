@@ -1,3 +1,5 @@
+-- Deprecated file
+
 GLOBAL = {
     TOP_SCORE = 0,
     LAST_SCORE = 0,

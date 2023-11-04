@@ -1,3 +1,5 @@
+-- Deprecated
+
 WavePool = lazy.class("WavePool")
 
 function WavePool:constructor(entries, set_boss_mode, set_quasar_mode)

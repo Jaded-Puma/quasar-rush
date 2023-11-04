@@ -1,3 +1,5 @@
+-- State to handle logic on the "level"
+
 StateLevelLogic = lazy.class("StateLevelLogic")
 
 local STATE_GAMEOVER_TIMEOUT_MAX = 60 * 4

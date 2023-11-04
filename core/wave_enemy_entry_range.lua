@@ -1,3 +1,5 @@
+-- spawn enemies with a range of time between them.
+
 WaveEnemyEntryRange = lazy.extend("WaveEnemyEntryRange", WaveEnemyEntryBase)
 
 function WaveEnemyEntryRange:constructor(Klass, spawn_number, spawn_data, spawn_time_min, spawn_time_spread)

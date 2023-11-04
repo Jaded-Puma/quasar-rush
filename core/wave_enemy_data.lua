@@ -1,4 +1,4 @@
---- Enemy definition file
+-- Enemy data file which determines the attributes that can be modified in any one enemy object
 
 local NONE = "NONE"
 

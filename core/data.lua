@@ -1,3 +1,5 @@
+-- Data for the game, basically a lua json file.
+
 DATA = {}
 
 -- temp vars

@@ -1,3 +1,5 @@
+-- Deprecated
+
 WaveEntryPool = lazy.class("WaveEntryPool")
 
 function WaveEntryPool:constructor(...)

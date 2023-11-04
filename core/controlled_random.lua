@@ -1,3 +1,5 @@
+-- Class for controlling random events with a more even distribution
+
 ControlledRandom = lazy.class("ControlledRandom")
 
 local ID = 1

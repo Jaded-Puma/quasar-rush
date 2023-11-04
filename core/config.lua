@@ -1,3 +1,5 @@
+-- Configuration data for game logic
+
 local SPACESHIP_DOWN_SPREAD = 60
 local SPACESHIP_UP_SPREAD = 17
 

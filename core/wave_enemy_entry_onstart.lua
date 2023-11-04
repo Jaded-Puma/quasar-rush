@@ -1,3 +1,5 @@
+-- Class to spawn enemies at the start of a wave
+
 WaveEnemyEntryOnStart = lazy.extend("WaveEnemyEntryOnStart", WaveEnemyEntryBase)
 
 function WaveEnemyEntryOnStart:constructor(Klass, spawn_number, spawn_data)

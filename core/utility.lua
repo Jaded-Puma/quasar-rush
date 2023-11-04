@@ -1,3 +1,5 @@
+-- Global utility for game logic
+
 UTILITY = {}
 
 UTILITY.conver_direction_spr = function(dir)

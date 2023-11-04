@@ -1,3 +1,5 @@
+-- Class to always spawn enemies defined in the wave_data file.
+
 WaveEnemyEntryAlways = lazy.extend("WaveEnemyEntryAlways", WaveEnemyEntryBase)
 
 local DEFAULT_COOLDOWN = 60

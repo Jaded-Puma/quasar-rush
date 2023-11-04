@@ -1,3 +1,5 @@
+-- Abstract class to control spawning enemies
+
 WaveEnemyEntryBase = lazy.class("WaveEnemyEntryBase")
 
 function WaveEnemyEntryBase:constructor(Klass, spawn_number, spawn_data)

@@ -1,3 +1,4 @@
+-- Implements flashing animation to work with the rendering logic of tic-80
 -- This class acts more like an psudo-interface
 
 Flashing = lazy.class("Flashing")

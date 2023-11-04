@@ -1,3 +1,5 @@
+-- Class to spawn enemies based on the percent of wave completed.
+
 WaveEnemyEntryOnTrigger = lazy.extend("WaveEnemyEntryOnTrigger", WaveEnemyEntryBase)
 
 function WaveEnemyEntryOnTrigger:constructor(Klass, spawn_number, spawn_data, triggers)

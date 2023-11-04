@@ -1,3 +1,5 @@
+-- Handling upgrade logic and configuration
+
 local UPGRADE_TYPE = lazy.enum(
     "PLUS_WEAPON"
 )

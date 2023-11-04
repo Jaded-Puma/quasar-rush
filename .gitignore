@@ -5,7 +5,9 @@ game.*
 *.png
 *.gpl
 *.gif
-game
+*.zip
+*.tar.gz
+/game
 
 # ignore dir
 .vscode/

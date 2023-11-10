@@ -696,9 +696,10 @@ function StateLevelLogic:_game_enemy_update()
                     local damage = enemy_entity.logic.damage + penalty
                     self.spaceship.logic.hp = lazy.math.lower_bound(self.spaceship.logic.hp - damage, 0)
                 else
-                    local damage = CONFIG.GLOBAL.DAMAGE_COLLISION
+                    local penalty = enemy_entity.logic.use_alt_pal and CONFIG.GLOBAL.DAMAGE_COLLISION_PENALTY or 0
+                    local damage = CONFIG.GLOBAL.DAMAGE_COLLISION + penalty
                     self.spaceship.logic.hp = lazy.math.lower_bound(self.spaceship.logic.hp - damage, 0)
-                    lazy.log("WARNING: nil 'collision' damage value.")
+                    -- lazy.log("WARNING: nil 'collision' damage value.")
                 end
 
                 self.spaceship.logic.flashing:start()

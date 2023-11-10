@@ -145,7 +145,7 @@ function StateIntro:_draw_mouse()
     print(TEXT_START, x+1 ,y+1, colorbg)
     print(TEXT_START, x ,y, color)
     x = x + 5*12
-    local top = "- TOP "..self.top
+    local top = "- HSCORE "..self.top
     print(top, x+1 ,y+1, colorbg)
     print(top, x ,y, color)
 end

@@ -182,7 +182,7 @@ else
     ]]--
     local level_per_wave = 2.35
 
-    local wave = 0
+    local wave = 8
     local level = math.floor(wave * level_per_wave)
 
     DEBUG_WAVE_CONFIG.SET(wave, level)

@@ -497,7 +497,7 @@ function StateLevelRenderer:_draw_gameover()
         end
 
         if self.logic.has_new_score then
-            local msg = "NEW TOP SCORE"
+            local msg = "NEW HSCORE"
             local size = 2
 
             y = y + 21

@@ -44,6 +44,7 @@ function EnemyKamikazeLogic:constructor(entity)
 
     -- hard mode
     self.entity:setup_hardmode(self)
+    self.damage = self.use_alt_pal and CONFIG.ENEMY.KAMIKAZE.DAMAGE_COLLISION_CORRUPT or CONFIG.ENEMY.KAMIKAZE.DAMAGE_COLLISION
 end
 
 function EnemyKamikazeLogic:update(dt)

@@ -230,7 +230,8 @@ CONFIG = {
             SPAWN_HEIGHT_MIN = 10,
             SPAWN_HEIGHT_MAX = 35,
 
-            DAMAGE_COLLISION = 250, -- 4 kill
+            DAMAGE_COLLISION = 130,
+            DAMAGE_COLLISION_CORRUPT = 100, -- adds plus 50 to 150
 
             HITBOX = {
                 X = 2,

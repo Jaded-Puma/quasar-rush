@@ -3,7 +3,7 @@
 StateIntro = lazy.extend("StateLevel", State)
 
 local TEXT_START = "START GAME"
-local TEXT_CREDITS = "(c) "..META.AUTHOR.." 2023 | jadedpuma.com"
+local TEXT_CREDITS = "Made by "..META.AUTHOR.." | jadedpuma.com"
 
 local TEXT_VERSION = META.VERSION
 

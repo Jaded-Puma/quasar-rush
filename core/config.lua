@@ -152,8 +152,8 @@ CONFIG = {
         HP_MUL = 0.8
     },
     LEVEL = {
-        WAVE_TIMEOUT = 30 * 60,
-        WAVE_BOSS_TIMEOUT = 45 * 60,
+        WAVE_TIMEOUT = 20 * 60,
+        WAVE_BOSS_TIMEOUT = 35 * 60,
         WAVE_TEXT_TIMER_MAX = 100,
     },
     CONTROLBALL = {
@@ -165,7 +165,7 @@ CONFIG = {
 
         HP = 1000,
         MOVE_SPEED = 1.1,
-        EXP = 70,
+        EXP = 50,
         EXP_PER_CAPSULE = 10,
 
         MAX_LEVEL = 99,

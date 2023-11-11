@@ -180,9 +180,9 @@ else
 
     w18 = 34?
     ]]--
-    local level_per_wave = 2.35
+    local level_per_wave = 2.85
 
-    local wave = 8
+    local wave = DEBUG_START_WAVE
     local level = math.floor(wave * level_per_wave)
 
     DEBUG_WAVE_CONFIG.SET(wave, level)
@@ -544,7 +544,7 @@ else
     )
 
     -- Quasar waves
-    local base = 1/15
+    local base = 1/11
     table.insert(WAVE_DATA,
         Wave(
             {

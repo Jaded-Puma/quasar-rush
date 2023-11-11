@@ -137,6 +137,17 @@ function StateLevelLogic:constructor(base_state)
     -- self.score = 1234
     -- self:_debug_set_level(99)
     -- self:_debug_set_wave(23)
+
+    if DEBUG_MODE then
+        self.entity_count = 0
+        self.projectile_count = 0
+        self.particle_count = 0
+        self.entity_count_avg = 0
+        self.projectile_count_avg = 0
+        self.particle_count_avg = 0
+        self.fps_avg = 0
+        self.frame_avg = 0
+    end
 end
 
 function StateLevelLogic:start()
@@ -191,6 +202,7 @@ function StateLevelLogic:particle_explosion(cx, cy)
     end
 end
 
+local slowdown_timeout = 60
 function StateLevelLogic:_debug()
     if not DEBUG_MODE then return end
 
@@ -395,6 +407,44 @@ function StateLevelLogic:_debug()
         -- 12 = L
         if self:_debug_key(12) then
             self:_debug_spawn(EnemyHeart, { 99999, 10 })
+        end
+    end
+
+    local fps = FPS:getValue()
+    local frame = lazy.math.round((fps / 60), 0.1)
+
+    self.entity_count = self.enemy_handler:size()
+        + self.exp_handler:size()
+        + self.sfx_handler:size()
+    self.projectile_count = self.projectile_handler:size()
+        + self.enemy_projectile_handler:size()
+    self.particle_count = self.particle_handler:size()
+
+    local time = 60 * 3
+    self.fps_avg = lazy.math.rollingAverage(self.fps_avg, fps, time)
+    self.frame_avg = lazy.math.rollingAverage(self.frame_avg, frame, time)
+    time = 15
+    self.entity_count_avg = lazy.math.rollingAverage(self.entity_count_avg, self.entity_count, time)
+    self.projectile_count_avg = lazy.math.rollingAverage(self.projectile_count_avg, self.projectile_count, time)
+    self.particle_count_avg = lazy.math.rollingAverage(self.particle_count_avg, self.particle_count, time)
+
+    if DEBUG_SLOWDOWN_DETECT then
+        if slowdown_timeout > 0 then
+            slowdown_timeout = slowdown_timeout - 1
+        elseif slowdown_timeout == 0 and fps < 58 then
+            slowdown_timeout = 60
+
+            local total = self.entity_count + self.projectile_count + self.particle_count
+
+            --self.entity_count_avg = lazy.math.rollingAverage(self.entity_count_avg, entity_count, time)
+            --self.projectile_count_avg = lazy.math.rollingAverage(self.projectile_count_avg, projectile_count, time)
+            --self.particle_count_avg = lazy.math.rollingAverage(self.particle_count_avg, particle_count, time)
+
+            trace("-----")
+            trace("SLOWDOWN @ wave "..self.wave)
+            trace("FPS: "..fps)
+            trace("MEM: entity:"..self.entity_count.." proj:"..self.projectile_count.." par: "..self.particle_count.." total:"..total)
+            trace("MEM AVG: entity:"..self.entity_count_avg.." proj:"..self.projectile_count_avg.." par: "..self.particle_count_avg)
         end
     end
 end
@@ -607,6 +657,9 @@ end
 
 function StateLevelLogic:_game_wave_setup()
     if DEBUG_WAVE then return end
+
+    -- colelct garbage
+    collectgarbage("collect")
 
     -- setup wave
     if self.current_wave_time == 0 then

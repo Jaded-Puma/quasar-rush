@@ -35,14 +35,6 @@ function StateLevelRenderer:constructor(logic)
     self.upgrade_prompt_color_toggle = true
     self.wave_text_color_toggle = true
     self.gameover_text_color_toggle = true
-
-    if DEBUG_MODE then
-        self.logic.entity_count_avg = 0
-        self.logic.projectile_count_avg = 0
-        self.logic.particle_count_avg = 0
-        self.logic.fps_avg = 0
-        self.logic.frame_avg = 0
-    end
 end
 
 function StateLevelRenderer:render()
@@ -147,35 +139,21 @@ function StateLevelRenderer:_debug()
         print(self.logic.debug_report, x, y, 15)
     end
 
-    local entity_count = self.logic.enemy_handler:size()
-        + self.logic.exp_handler:size()
-        + self.logic.sfx_handler:size()
-    local projectile_count = self.logic.projectile_handler:size()
-        + self.logic.enemy_projectile_handler:size()
-    local particle_count = self.logic.particle_handler:size()
-
-    local time = 60 * 3
-
-    self.logic.entity_count_avg = lazy.math.rollingAverage(self.logic.entity_count_avg, entity_count, time)
-    self.logic.projectile_count_avg = lazy.math.rollingAverage(self.logic.projectile_count_avg, projectile_count, time)
-    self.logic.particle_count_avg = lazy.math.rollingAverage(self.logic.particle_count_avg, particle_count, time)
+    -- 
+    
 
     local fps = FPS:getValue()
     local frame = lazy.math.round((fps / 60), 0.1)
-
-    time = 15
-    self.logic.fps_avg = lazy.math.rollingAverage(self.logic.fps_avg, fps, time)
-    self.logic.frame_avg = lazy.math.rollingAverage(self.logic.frame_avg, frame, time)
 
     if DEBUG_DISPLAY then
         local a  = 0.1
         local round = lazy.math.round
 
-        print("Entity #: " .. round(self.logic.entity_count_avg, a) .. " : " .. entity_count, 1, 1, 15)
-        print("Projectile #: " .. round(self.logic.projectile_count_avg, a) .. " : " .. projectile_count, 1, 1 + 8, 15)
-        print("Particle #: " .. round(self.logic.particle_count_avg, a) .. " : " .. particle_count, 1, 1 + 8 * 2, 15)
-        print("FPS #: " .. round(self.logic.fps_avg) .. " : " .. fps .. 
-            " FRM: " .. round(self.logic.frame_avg, 0.1) .. " : " .. frame, 1, 1 + 8 * 3, 15)
+        print("Entity #: "..round(self.logic.entity_count_avg, a).." : "..self.logic.entity_count, 1, 1, 15)
+        print("Projectile #: "..round(self.logic.projectile_count_avg, a).." : "..self.logic.projectile_count, 1, 1 + 8, 15)
+        print("Particle #: "..round(self.logic.particle_count_avg, a).." : ".. self.logic.particle_count, 1, 1 + 8 * 2, 15)
+        print("FPS #: "..round(self.logic.fps_avg).." : "..fps.. 
+            " FRM: "..round(self.logic.frame_avg, 0.1).." : "..frame, 1, 1 + 8 * 3, 15)
     end
 
     local c = 3
@@ -199,11 +177,9 @@ function StateLevelRenderer:_debug()
 
         local COMPLEXITY_MAVG = lazy.math.round(self.logic.METRICS.MAVG.CAVG, 0.01)
         print("COMPL " .. COMPLEXITY_MAVG, 1, 1+8)
-
     end
 
     
-
     if DEBUG_BOUNDINGBOX then
         lazy.tic.draw_box_class(self.logic.spaceship, 15, CONFIG.GLOBAL.KEY_HITBOX)
 

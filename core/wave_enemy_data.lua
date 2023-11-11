@@ -219,7 +219,7 @@ local CONFIG_ORGANIC = {
 
     ["DEBUG_CORRUPT"] = {9999, 1.5, true, 2, 1, 10000, 1.2},
 
-    ["BOSS"] = {150, 1.3, true, 2, 3, 75, 0.85},
+    ["BOSS"] = {250, 1.3, true, 2, 3, 75, 0.85},
 
     ["IMMUNE"] = {-1, 0.4, false, 5, 1, 90, 1.2},
 }

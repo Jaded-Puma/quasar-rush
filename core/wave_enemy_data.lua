@@ -26,7 +26,7 @@ local CONFIG_ZOMBIE = {
     ["RED_BASE"]    = {30, speed[4], false, 4, 1, 1},
     ["PURPLE_BASE"] = {30, speed[5], false, 5, 1, 1},
     ["WHITE_BASE"]  = {40, speed[6], false, 6, 1, 1},
-    ["FUSION_BASE"] = {70, speed[7], false, 7, 1, 1},
+    ["FUSION_BASE"] = {60, speed[7], false, 7, 1, 1},
 
     ["DEBUG_CORRUPT"] = {-1, 1.32, true, 2, 1, 3},
 
@@ -38,7 +38,7 @@ CONFIG_ZOMBIE["GREEN_BASE_IMMUNE"] = modify(CONFIG_ZOMBIE["GREEN_BASE"], -1, NON
 CONFIG_ZOMBIE["BLUE_BASE_SLOW"] = modify(CONFIG_ZOMBIE["BLUE_BASE"], NONE, 0.20, NONE, NONE, NONE, NONE)
 CONFIG_ZOMBIE["FUSION_BASE_S3_SLOW"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, 0.46, NONE, NONE, NONE, 3)
 CONFIG_ZOMBIE["RED_BASE_M2"] = modify(CONFIG_ZOMBIE["RED_BASE"], NONE, NONE, NONE, NONE, NONE, 2)
-CONFIG_ZOMBIE["RED_BASE_WALL"] = modify(CONFIG_ZOMBIE["RED_BASE"], NONE, NONE, NONE, NONE, NONE, 2)
+CONFIG_ZOMBIE["FUSION_BASE_WALL"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, NONE, NONE, NONE, NONE, 2)
 
 CONFIG_ZOMBIE["WHITE_BASE_SLOW"] = modify(CONFIG_ZOMBIE["WHITE_BASE"], NONE, 0.5, NONE, NONE, 2, NONE)
 
@@ -87,7 +87,7 @@ local CONFIG_PEEK = {
     ["RED_BASE"]    = {90,  45, false, 4, 8*3, 1},
     ["PURPLE_BASE"] = {100, 40, false, 5, 8*4, 1},
     ["WHITE_BASE"]  = {120, 37, false, 6, 8*4, 1},
-    ["FUSION_BASE"] = {140, 32, false, 7, 8*5, 1},
+    ["FUSION_BASE"] = {180, 32, false, 7, 8*5, 1},
 
     ["DEBUG_CORRUPT"] = {9999, 100, true, 2, 8*5, 1},
 
@@ -126,7 +126,7 @@ local CONFIG_MEDUSA = {
     ["RED_BASE"]    = {20, 0.90, false, 4, 3, 4},
     ["PURPLE_BASE"] = {30, 0.99, false, 5, 3, 5},
     ["WHITE_BASE"]  = {30, 1.00, false, 6, 4, 7},
-    ["FUSION_BASE"] = {40, 1.12, false, 7, 11, 8},
+    ["FUSION_BASE"] = {20, 0.90, false, 7, 11, 8},
 
     ["DEBUG_CORRUPT"] = {9999, 0.50, true, 6, 7, 83},  -- speed 0.8
 

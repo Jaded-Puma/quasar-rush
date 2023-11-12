@@ -3,7 +3,6 @@
 
 Flashing = lazy.class("Flashing")
 
-
 function Flashing:constructor()
     self.time = 0
     self.cooldown = 0
@@ -31,12 +30,12 @@ function Flashing:render_function(func)
 
 end
 
-function Flashing:start()
+function Flashing:start(time)
     if self.cooldown ~= 0 then
         return
     end
 
-    self.time = CONFIG.GLOBAL.FLASH_TIME
+    self.time = time and time or CONFIG.GLOBAL.FLASH_TIME
     self.cooldown = 2
 end
 

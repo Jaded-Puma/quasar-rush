@@ -16,6 +16,8 @@ function SpaceshipEntityLogic:constructor(entity)
     self.weapons = 1
     self.weapon_recharge_count = 3
     self.projectile_speed_mod = 0
+
+    self.enable_rocket = false
 end
 
 function SpaceshipEntityLogic:update(dt)
@@ -50,6 +52,53 @@ function SpaceshipEntityLogic:update(dt)
     end
     if FRAME % 30 == 0 and self.weapons >= 5 then
         self:_fire_weapon(5, CONFIG.SPACESHIP.PROJECTILE_NORMAL_WEAPON1_LANE1)
+    end
+
+    local mod = CONFIG.SPACESHIP.PROJECTILE_ROCKET_TIME_MOD 
+      - CONFIG.SPACESHIP.PROJECTILE_ROCKET_TIME_MOD_SUB * self.entity.game_logic.wave
+
+    if FRAME % mod == 0 
+      and self.enable_rocket
+      and self.entity.game_logic.state == self.entity.game_logic.STATES.GAME
+      then
+        local anim = self.entity.game_logic.projectile_spaceship_anim_rocket
+        
+        local normal = CONFIG.SPACESHIP.PROJECTILE_NORMAL_ROCKET
+
+        local acc = CONFIG.SPACESHIP.PROJECTILE_ROCKET_ACC
+        local speed = CONFIG.SPACESHIP.PROJECTILE_ROCKET_SPEED
+        
+        local x, y = self.entity.x + 5, self.entity.y + 6
+
+        local update = function (this)
+            if this.entity.y < CONFIG.SPACESHIP.Y - 10 then
+                -- this.entity.x = this.entity.x + this.speed * this.normal.x
+                this.entity.y = this.entity.y + this.speed * this.normal.y
+            else
+                this.entity.x = self.entity.x + 5
+                this.entity.y = this.entity.y + this.speed * this.normal.y
+
+                this.explode = true
+            end
+            
+            -- apply acc
+            this.speed = this.speed + this.acc
+        end
+
+        -- (game_logic, x, y, w, h, normal, speed, acc, update_func, mod_animate)
+        self.entity.game_logic:spawn_projectile(
+            self.entity,
+            self.entity.game_logic.projectile_handler,
+            x, y,
+            4, 8,
+            normal,
+            speed,
+            acc,
+            update,
+            anim
+        )
+
+        DATA.SFX[DATA.SFX.INDEX.ROCKET_READY]:play()
     end
 end
 
@@ -101,8 +150,6 @@ function SpaceshipEntityLogic:_fire_weapon(weapon_type, normal)
         anim = self.entity.game_logic.projectile_spaceship_anim_sin
         speed = CONFIG.SPACESHIP.PROJECTILE_SIN_SPEED
     end
-
-    
 
     if weapon_type == 3 then
         x = self.entity.x + 8

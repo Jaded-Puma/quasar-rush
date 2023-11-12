@@ -147,13 +147,13 @@ CONFIG = {
     },
     HARDMODE = {
         PAL = 8,
-        HP_INCREASE = 30,
-        HP_COR_INC = 100,
-        HP_MUL = 0.8
+        HP_INCREASE = 35,
+        HP_COR_INC = 180,
+        HP_MUL = 0.85
     },
     LEVEL = {
         WAVE_TIMEOUT = 20 * 60,
-        WAVE_BOSS_TIMEOUT = 35 * 60,
+        WAVE_BOSS_TIMEOUT = 38 * 60,
         WAVE_TEXT_TIMER_MAX = 100,
     },
     CONTROLBALL = {
@@ -186,6 +186,15 @@ CONFIG = {
 
         PROJECTILE_NORMAL_WEAPON3_LANE1 = lazy.math.normalAngleDegree(270 - SPACESHIP_UP_SPREAD),
         PROJECTILE_NORMAL_WEAPON3_LANE2 = lazy.math.normalAngleDegree(270 + SPACESHIP_UP_SPREAD),
+
+        PROJECTILE_NORMAL_ROCKET = lazy.math.normalAngleDegree(270),
+        PROJECTILE_ROCKET_TIME_MOD = 75,
+        PROJECTILE_ROCKET_TIME_MOD_SUB = 1,
+        PROJECTILE_ROCKET_ACC = 0.05,
+        PROJECTILE_ROCKET_SPEED = 0.2,
+
+        PROJECTILE_ROCKET_DAMAGE = 80,
+        PROJECTILE_ROCKET_WAVE_ADD = 3,
 
         MAX_UPGRADE = {
             MOVE_SPEED   = 2.00,

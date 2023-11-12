@@ -38,7 +38,7 @@ function StateLevelLogic:constructor(base_state)
     self.quasar_level = -1
     self.boss_mode = false
 
-    self.hard_mode = false
+    self.hard_mode = DEBUG_ENABLE_HARDMODE
 
     self.wave_text_timer = CONFIG.LEVEL.WAVE_TEXT_TIMER_MAX
 
@@ -75,6 +75,8 @@ function StateLevelLogic:constructor(base_state)
 
     self.projectile_enemy_shooter_anim = ModAnimate({268, 284}, 3)
     self.projectile_enemy_organic_anim = ModAnimate({267, 283}, 5)
+
+    self.projectile_spaceship_anim_rocket = ModAnimate({265, 281}, 5)
 
     self.enemy_projectile_ids = {268, 284}
     self.enemy_organic_projectile_ids = {267, 283}
@@ -128,6 +130,12 @@ function StateLevelLogic:constructor(base_state)
                 end
             }
         }
+
+        -- setup hard mode
+        if self.hard_mode then
+            self:_debug_set_level(99)
+            self.spaceship.logic.enable_rocket = true
+        end
     end
 
     self.debug_report = ""
@@ -180,7 +188,7 @@ function StateLevelLogic:update(dt)
 end
 
 function StateLevelLogic:spawn_projectile(source, handler, x, y, w, h, normal, speed, acc, update_func, mod_animate)
-    -- (game_logic, x, y, normal, speed, acc, update_func, mod_animate)
+    -- (game_logic, x, y, w, h, normal, speed, acc, update_func, mod_animate)
     
     local projectile = ProjectileEntity(
         source,
@@ -322,6 +330,8 @@ function StateLevelLogic:_debug()
     if self:_debug_key(25) then
         self.current_wave_time = 0
         self:_debug_report("Next wave")
+
+        self:_debug_set_level(3)
     end
 
     -- wave 44 = GRAVE
@@ -680,6 +690,18 @@ function StateLevelLogic:_game_wave_setup()
             self.quasar_level = -1 
 
             self:_play_track(DATA.TRACK.SPACE)
+
+            -- rocket check
+            if not self.spaceship.enable_rocket then
+                self.spaceship.logic.enable_rocket = true
+
+                self.upgrade_prompt.text = "+ Rocket"
+                self.upgrade_prompt.time = self.upgrade_prompt.max_time
+                self.upgrade_prompt.x = CONFIG.GAME.VIEWPORT.W / 2
+                self.upgrade_prompt.y = CONFIG.GAME.VIEWPORT.H - 8
+
+                self.spaceship.logic.flashing:start(30)
+            end
         end
 
         self.current_wave = WAVE_DATA[self.wave]
@@ -767,7 +789,18 @@ function StateLevelLogic:_game_enemy_update()
 
                         projectile_entity.delete = true
 
-                        if enemy_entity.logic:is_immune() then
+                        if projectile_entity.logic.explode then
+                            projectile_entity.game_logic:particle_explosion(projectile_entity.x + projectile_entity.w / 2, projectile_entity.y + projectile_entity.h / 2)
+                            projectile_entity.game_logic.sfx_handler:add(SfxEntity(projectile_entity.x, projectile_entity.y, DATA.GFX.EXPLOSION_KAMIKAZE))
+                            DATA.SFX[DATA.SFX.INDEX.EXPLODE]:play()
+                            DATA.CAMERA.ENEMY_EXPLOSION:shake(projectile_entity.game_logic.camera)
+                        
+                            local damage = CONFIG.SPACESHIP.PROJECTILE_ROCKET_DAMAGE 
+                              + CONFIG.SPACESHIP.PROJECTILE_ROCKET_WAVE_ADD * self.wave
+
+                            enemy_entity.logic.hp = lazy.math.lower_bound(enemy_entity.logic.hp - damage, 0)
+                            enemy_entity.logic.flashing:start()
+                        elseif enemy_entity.logic:is_immune() then
                             DATA.SFX[DATA.SFX.INDEX.IMMUNE_BULLET]:play()
                         else
                             enemy_entity.logic.hp = lazy.math.lower_bound(enemy_entity.logic.hp - 10, 0)

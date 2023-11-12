@@ -18,6 +18,7 @@ function ProjectileEntity:constructor(source, game_logic, x, y, normal, speed, a
         self.entity.y = self.entity.y + self.speed * self.normal.y
     end)
 
+    self.explode = false
 
     self.logic.base_x = x
     self.logic.base_y = y

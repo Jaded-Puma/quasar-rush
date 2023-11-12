@@ -66,7 +66,7 @@ function EnemyMedusaLogic:constructor(entity)
     elseif self.mode == 10 then
         self.base_x = CONFIG.GAME.VIEWPORT.W / 2 - 8
     elseif self.mode == 11 then
-        self.start_angle = 0.3 * math.random()  * lazy.math.random_sign()
+        self.start_angle = -math.pi + 1/16*math.pi * math.random() * lazy.math.random_sign()
     elseif self.mode == 12 then
         self.start_angle = 0
     end

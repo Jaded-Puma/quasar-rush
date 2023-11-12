@@ -180,7 +180,7 @@ else
 
     w18 = 34?
     ]]--
-    local level_per_wave = 2.85
+    local level_per_wave = 99 / 27
 
     local wave = DEBUG_START_WAVE
     local level = math.floor(wave * level_per_wave)
@@ -493,8 +493,8 @@ else
         Wave(
             {
                 WaveEnemyEntryAlways(EnemyPeek, 1, PEEK["FUSION_BASE_S3"], 120),
-                WaveEnemyEntryTimed(EnemyZombieShip, 1, ZOMBIE["RED_BASE_WALL"], 80),
-                WaveEnemyEntryOnTrigger(EnemyMedusa,  1, MEDUSA["RED_BASE"], TRIGGER.WITH_5_AT_1_6_TIME),
+                WaveEnemyEntryTimed(EnemyZombieShip, 1, ZOMBIE["FUSION_BASE_WALL"], 80),
+                WaveEnemyEntryOnTrigger(EnemyMedusa,  1, MEDUSA["FUSION_BASE"], TRIGGER.WITH_5_AT_1_6_TIME),
             }
         )
     )

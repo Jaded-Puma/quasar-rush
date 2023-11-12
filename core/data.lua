@@ -50,7 +50,8 @@ DATA.SFX.INDEX = {
     BOUNCE = "bounce",
     EYE_BULLET = "eye_bullet",
     IMMUNE_BULLET = "immune_bullet",
-    FOLLOW_BULLET = "follow_bullet"
+    FOLLOW_BULLET = "follow_bullet",
+    ROCKET_READY = "rocket_ready"
 }
 
 -- SFX
@@ -60,6 +61,7 @@ DATA.SFX[DATA.SFX.INDEX.IMMUNE_BULLET]  = SfxData(9, "D#3", nil, nil, 8, 2, 1000
 DATA.SFX[DATA.SFX.INDEX.EXP_COLLECT]    = SfxData(3, "C#5", nil, nil, 7, 2, 1010)
 DATA.SFX[DATA.SFX.INDEX.HEALTH_UP]      = SfxData(6, "C#5", nil, nil, 7, 2, 1010)
 DATA.SFX[DATA.SFX.INDEX.LEVELUP]        = SfxData(4, "C#4", nil, nil, 0, 2, 1020)
+DATA.SFX[DATA.SFX.INDEX.ROCKET_READY]   = SfxData(12, "F#2", nil, nil, 7, 2, 1030)
 
 -- channel 3
 DATA.SFX[DATA.SFX.INDEX.BULLET_FIRE]    = SfxData(0, "D#3", nil, nil, 6, 3, 1000)

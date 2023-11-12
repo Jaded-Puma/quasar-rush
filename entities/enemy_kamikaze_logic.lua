@@ -101,7 +101,7 @@ function EnemyKamikazeLogic:update(dt)
     end
 
     if self.state == self.STATES.ATTACK
-    and FRAME % 2 == 0 then
+      and FRAME % 2 == 0 then
         PARTICLE_FACTORY.aim_attack_trail(
             self.entity.game_logic.particle_handler,
             self.entity.x + 8 - 1, self.entity.y + 8 - 1

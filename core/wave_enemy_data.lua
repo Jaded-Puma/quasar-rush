@@ -26,7 +26,7 @@ local CONFIG_ZOMBIE = {
     ["RED_BASE"]    = {30, speed[4], false, 4, 1, 1},
     ["PURPLE_BASE"] = {30, speed[5], false, 5, 1, 1},
     ["WHITE_BASE"]  = {40, speed[6], false, 6, 1, 1},
-    ["FUSION_BASE"] = {60, speed[7], false, 7, 1, 1},
+    ["FUSION_BASE"] = {50, speed[7], false, 7, 1, 1},
 
     ["DEBUG_CORRUPT"] = {-1, 1.32, true, 2, 1, 3},
 
@@ -126,7 +126,7 @@ local CONFIG_MEDUSA = {
     ["RED_BASE"]    = {20, 0.90, false, 4, 3, 4},
     ["PURPLE_BASE"] = {30, 0.99, false, 5, 3, 5},
     ["WHITE_BASE"]  = {30, 1.00, false, 6, 4, 7},
-    ["FUSION_BASE"] = {20, 0.90, false, 7, 11, 8},
+    ["FUSION_BASE"] = {20, 0.80, false, 7, 11, 8},
 
     ["DEBUG_CORRUPT"] = {9999, 0.50, true, 6, 7, 83},  -- speed 0.8
 
@@ -157,7 +157,7 @@ CONFIG_MEDUSA["WHITE_BASE_M2_P16"] = modify(CONFIG_MEDUSA["WHITE_BASE"], NONE, N
 
 CONFIG_MEDUSA["WHITE_BASE_BLOCK"] = modify(CONFIG_MEDUSA["WHITE_BASE"], NONE, NONE, NONE, NONE, 9, 14)
 
-CONFIG_MEDUSA["FUSION_BASE_M6_P16"] = modify(CONFIG_MEDUSA["FUSION_BASE"], 120, 0.62, NONE, NONE, 7, 90)
+CONFIG_MEDUSA["FUSION_BASE_CIRC"] = modify(CONFIG_MEDUSA["FUSION_BASE"], 190, 0.62, NONE, NONE, 7, 90)
 
 CONFIG_MEDUSA["QUASAR_1"] = modify(CONFIG_MEDUSA["FUSION_BASE"], 30, 0, true, NONE, 9, 352)
 CONFIG_MEDUSA["QUASAR_2"] = modify(CONFIG_MEDUSA["FUSION_BASE"], NONE, 0.10, true, 6, 10, 0)

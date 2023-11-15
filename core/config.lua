@@ -293,7 +293,7 @@ CONFIG = {
             SHOOT_ANTICIPATION = 35,
 
 
-            DAMAGE_PROJECTILE = 200, -- 5 kill
+            DAMAGE_PROJECTILE = 150,
 
             HITBOX = {
                 X = 2,

@@ -5,6 +5,8 @@ StateIntro = lazy.extend("StateLevel", State)
 local TEXT_START = "START GAME"
 local TEXT_CREDITS = "Made by "..META.AUTHOR.." | jadedpuma.com"
 
+local TEXT_TOUCH = "OR TOUCH SCREEN"
+
 local TEXT_VERSION = META.VERSION
 
 function StateIntro:constructor()
@@ -139,6 +141,7 @@ function StateIntro:_draw_mouse()
 
     local color = 15
     local colorbg = 2
+    local color_faint = 5
 
     y = y + 2
     x = x + 17
@@ -148,6 +151,11 @@ function StateIntro:_draw_mouse()
     local top = "- HSCORE "..self.top
     print(top, x+1 ,y+1, colorbg)
     print(top, x ,y, color)
+
+    x = 18
+    y = y + 8
+    print(TEXT_TOUCH, x ,y, color_faint)
+
 end
 
 function StateIntro:_draw_version() 

@@ -154,6 +154,7 @@ function StateLevelRenderer:_debug()
         print("Particle #: "..round(self.logic.particle_count_avg, a).." : ".. self.logic.particle_count, 1, 1 + 8 * 2, 15)
         print("FPS #: "..round(self.logic.fps_avg).." : "..fps.. 
             " FRM: "..round(self.logic.frame_avg, 0.1).." : "..frame, 1, 1 + 8 * 3, 15)
+        print("MEM KB: "..round(collectgarbage("count")).." | GC STEP: "..GC_STEP, 1, 1 + 8 * 4, 15)
     end
 
     local c = 3

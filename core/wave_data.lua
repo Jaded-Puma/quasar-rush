@@ -528,7 +528,7 @@ else
     table.insert(WAVE_DATA,
         Wave(
             {
-                WaveEnemyEntryAlways(EnemyMedusa, 2,  MEDUSA["FUSION_BASE_M6_P16"]),
+                WaveEnemyEntryAlways(EnemyMedusa, 2,  MEDUSA["FUSION_BASE_CIRC"]),
                 WaveEnemyEntryTimed(EnemyZombieShip, 1, ZOMBIE["WHITE_BASE"], 25),
             }
         )
@@ -538,13 +538,13 @@ else
             {
                 WaveEnemyEntryTimed(EnemyPeek, 1, PEEK["RED_BASE"], 450),
                 WaveEnemyEntryAlways(EnemyOrganic, 1, ORGANIC["FUSION_BASE_M2"]),
-                WaveEnemyEntryAlways(EnemyBounce, 5, BOUNCE["YELLOW_BASE"], 300)
+                WaveEnemyEntryAlways(EnemyBounce, 3, BOUNCE["YELLOW_BASE"], 300)
             }
         )
     )
 
     -- Quasar waves
-    local base = 1/11
+    local base = 1/8.5
     table.insert(WAVE_DATA,
         Wave(
             {

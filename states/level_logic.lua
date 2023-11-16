@@ -670,6 +670,7 @@ function StateLevelLogic:_game_wave_setup()
 
     -- colelct garbage
     collectgarbage("collect")
+    collectgarbage("stop")
 
     -- setup wave
     if self.current_wave_time == 0 then

@@ -1,3 +1,8 @@
+# 1.3b12
+  * Changed and added new garbage colletion variables.
+  * Modifed GC algorithm
+  * Fixed memory issue
+
 # 1.3b11
   * Fixed visual bug.
   * Fixed damage issues with "Organic" enemy type.

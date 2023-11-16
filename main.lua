@@ -8,7 +8,7 @@
 -- script:  lua
 
 -- CURRENT BUILD COUNTER
-BUILD = 11
+BUILD = 12
 
 --- METADATA GLOBALS
 META = {
@@ -20,7 +20,7 @@ META = {
 -- BUILD SETTINGS
 -- Since tic-80 requires a single file for export
 -- this is set after combining all lua files into a single one.
-IS_EXPORT = true
+IS_EXPORT = false
 
 DEMO_MODE = false
 
@@ -134,8 +134,6 @@ function BOOT()
     trace("Booting... '"..META.TITLE.."' BUILD: "..META.VERSION)
 
     -- Garbage collector settings
-   
-
     if DEMO_MODE then
         trace("Set as DEMO build.")
     end
@@ -184,10 +182,25 @@ function BOOT()
     -- gc control
     collectgarbage("collect" )
     collectgarbage("stop")
-    GC_STEP = 1
 
-    GC_RESET_COUNT_TIMEOUT = 2
-    GC_RESET_COUNT = GC_RESET_COUNT_TIMEOUT
+    GC_STATES = lazy.enum("STEP_UP", "STEP_DOWN")
+    GC_SPEEDS = lazy.enum("SLOW", "FAST", "RAPID")
+
+    GC_STATE = GC_STATES.STEP_UP
+    GC_SPEED = GC_SPEEDS.RAPID
+
+    GC_STEP = 1000
+    GC_STEP_SLOW = 1
+    GC_STEP_FAST = 10
+    GC_STEP_RAPID = 30
+
+    GC_STEP_CHANGE_STATE = 2
+    GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE
+
+    GC_STEP_SPEED_CHECK = 3
+    GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK
+
+    GC_COLLECT = 60
 end
 
 function TIC()
@@ -208,18 +221,81 @@ function TIC()
     STATE_MANAGER:render()
     if debugMode then debugMode:render() end
 
-    
-    local complete = collectgarbage("step", GC_STEP)
+    -- Update GC every frame
+    local sign = 1;
+    if GC_STATE == GC_STATES.STEP_UP then
+        sign = 1
+    elseif GC_STATE == GC_STATES.STEP_DOWN then
+        sign = -1
+    end
+
+    if GC_SPEED == GC_SPEEDS.SLOW then
+        GC_STEP = GC_STEP + GC_STEP_SLOW * sign
+    elseif GC_SPEED == GC_SPEEDS.FAST then
+        GC_STEP = GC_STEP + GC_STEP_FAST * sign
+    elseif GC_SPEED == GC_SPEEDS.RAPID then
+        GC_STEP = GC_STEP + GC_STEP_RAPID * sign
+    end
+
+    GC_STEP = lazy.math.lower_bound(GC_STEP, 1)
+
+    local completed = collectgarbage("step", GC_STEP)
     collectgarbage("stop")
-    if not complete then
-        GC_STEP = GC_STEP + 1
-        GC_RESET_COUNT = GC_RESET_COUNT_TIMEOUT
-    else
-        GC_RESET_COUNT = GC_RESET_COUNT - 1
-        if GC_RESET_COUNT == 0 then
-            GC_STEP = GC_STEP - 1
-            GC_RESET_COUNT = GC_RESET_COUNT_TIMEOUT
+
+    -- check for change
+    if GC_STATE == GC_STATES.STEP_UP then
+        if not completed then
+            GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK_COUNT - 1
+        else
+            GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK
         end
+
+        if completed then
+            GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE_COUNT - 1
+        else 
+            GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE
+        end
+
+        if GC_STEP_CHANGE_STATE_COUNT == 0 then
+            GC_STATE = GC_STATES.STEP_DOWN
+            GC_SPEED = GC_SPEEDS.SLOW
+            GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE
+            GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK
+        end
+    elseif GC_STATE == GC_STATES.STEP_DOWN then
+        if completed then
+            GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK_COUNT - 1
+        else
+            GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK
+        end
+
+        if not completed then
+            GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE_COUNT - 1
+        else 
+            GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE
+        end
+
+        if GC_STEP_CHANGE_STATE_COUNT == 0 then
+            GC_STATE = GC_STATES.STEP_UP
+            GC_SPEED = GC_SPEEDS.SLOW
+            GC_STEP_CHANGE_STATE_COUNT = GC_STEP_CHANGE_STATE
+            GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK
+        end
+    end
+
+    if GC_STEP_SPEED_CHECK_COUNT == 0 then
+        GC_STEP_SPEED_CHECK_COUNT = GC_STEP_SPEED_CHECK
+    
+        if GC_SPEED == GC_SPEEDS.SLOW then
+            GC_SPEED = GC_SPEEDS.FAST
+        elseif GC_SPEED == GC_SPEEDS.FAST then
+            GC_SPEED = GC_SPEEDS.RAPID
+        end
+    end
+    
+    if FRAME % GC_COLLECT == 0 then
+        collectgarbage("collect")
+        collectgarbage("stop")
     end
 
     FRAME = FRAME + 1

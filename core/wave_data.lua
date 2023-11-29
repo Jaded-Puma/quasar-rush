@@ -3,6 +3,7 @@
 WAVE_DATA = {}
 
 local ZOMBIE = WAVE_CONFIG.ZOMBIE
+local ZOMBIE_KAMIKAZE = WAVE_CONFIG.ZOMBIE_KAMIKAZE
 local SHOOTER = WAVE_CONFIG.SHOOTER
 local PEEK = WAVE_CONFIG.PEEK
 local MEDUSA = WAVE_CONFIG.MEDUSA
@@ -201,6 +202,7 @@ else
                 -- ? NOTE: Teaches controls shootings and basic mechanics.
 
                 WaveEnemyEntryModTime(EnemyZombieShip, 4, ZOMBIE["GREEN_BASE"], 60),
+                WaveEnemyEntryModTime(EnemyZombieShip, 2, ZOMBIE_KAMIKAZE["GREEN_BASE"], 140),
                 WaveEnemyEntryAlways(EnemyShooter, 2, SHOOTER["GREEN_BASE"], 60 * 4, 60 * 2),
             }
         )
@@ -209,8 +211,8 @@ else
         Wave(
             {
                 -- ? NOTE: Teaches about enemy types
-
                 WaveEnemyEntryModTime(EnemyZombieShip, 2, ZOMBIE["BLUE_BASE_SLOW"], 60),
+                WaveEnemyEntryModTime(EnemyZombieShip, 2, ZOMBIE_KAMIKAZE["BLUE_BASE"], 120),
                 WaveEnemyEntryOnTrigger(EnemyShooter, 1, SHOOTER["GREEN_BASE"], TRIGGER.WITH_3_AT_1_4_TIME),
             }
         )
@@ -219,11 +221,13 @@ else
         Wave(
             {
                 -- ? NOTE: Introducing to boss mechanics
+                --WaveEnemyEntryOnStart(EnemyZombieShip, 1, ZOMBIE["BOSS_1"]),
+
                 WaveEnemyEntryOnStart(EnemyZombieShip, 1, ZOMBIE["BOSS_1"]),
                 WaveEnemyEntryOnTrigger(EnemyZombieShip, 1, ZOMBIE["BOSS_2"], TRIGGER.AT_50),
-
+                WaveEnemyEntryModTime(EnemyZombieShip, 2, ZOMBIE_KAMIKAZE["BOSS_1"], 60*2),
                 WaveEnemyEntryAlways(EnemyMedusa,  1, MEDUSA["GREEN_BASE"], 60*3),
-                WaveEnemyEntryAlways(EnemyShooter, 2, SHOOTER["GREEN_BASE"], 60*10),
+                -- WaveEnemyEntryAlways(EnemyShooter, 2, SHOOTER["GREEN_BASE"], 60*10),
             },
             true
         )
@@ -233,14 +237,13 @@ else
     table.insert(WAVE_DATA,
         Wave(
             {
-                --- ? Boring level, needs somthing
                 WaveEnemyEntryOnStart(EnemyPeek, 1, PEEK["GREEN_BASE_MID"]),
                 WaveEnemyEntryOnTrigger(EnemyPeek, 1, PEEK["GREEN_BASE_MID"], TRIGGER.WITH_2_AT_1_3_TIME),
 
-                WaveEnemyEntryAlways(EnemyShooter, 2, SHOOTER["GREEN_BASE"], 60),
+                WaveEnemyEntryAlways(EnemyShooter, 1, SHOOTER["GREEN_BASE"], 60),
                 WaveEnemyEntryTimed(EnemyShooter, 1, SHOOTER["GREEN_BASE"], 60*4),
 
-                WaveEnemyEntryAlways(EnemyMedusa,  1, MEDUSA["GREEN_BASE"], 60*3),
+                WaveEnemyEntryAlways(EnemyMedusa,  2, MEDUSA["GREEN_BASE"], 60*3),
             }
         )
     )
@@ -345,7 +348,8 @@ else
     table.insert(WAVE_DATA,
         Wave(
             {
-                WaveEnemyEntryAlways(EnemyShooter, 2, SHOOTER["BLUE_BASE"]),
+                WaveEnemyEntryOnTrigger(EnemyZombieShip, 2, ZOMBIE_KAMIKAZE["YELLOW_BASE"], TRIGGER.WITH_4_AT_1_5_TIME),
+                WaveEnemyEntryAlways(EnemyShooter, 1, SHOOTER["BLUE_BASE"]),
                 WaveEnemyEntryAlways(EnemyShooter, 1, SHOOTER["YELLOW_BASE"]),
                 WaveEnemyEntryAlways(EnemyShooter, 1, SHOOTER["WHITE_BASE"]),
             }
@@ -371,8 +375,6 @@ else
             true
         )
     )
-
-    -- good so far
 
     -- medusa waves 16 17 18
     table.insert(WAVE_DATA,
@@ -413,7 +415,7 @@ else
             {
                 WaveEnemyEntryOnStart(EnemyOrganic, 1, ORGANIC["GREEN_BASE"]),
                 WaveEnemyEntryOnTrigger(EnemyMedusa,  1, MEDUSA["YELLOW_BASE_M10_P3"], TRIGGER.WITH_2_AT_1_3_TIME),
-                WaveEnemyEntryAlways(EnemyZombieShip, 4, ZOMBIE["RED_BASE"]),
+                WaveEnemyEntryAlways(EnemyZombieShip, 3, ZOMBIE_KAMIKAZE["RED_BASE"]),
             }
         )
     )
@@ -459,6 +461,7 @@ else
     table.insert(WAVE_DATA,
         Wave(
             {
+                WaveEnemyEntryAlways(EnemyZombieShip, 2, ZOMBIE_KAMIKAZE["BOSS_2"], 60*1+30),
                 WaveEnemyEntryAlways(EnemySeeker, 1, SEEKER["BOSS"], 45),
                 WaveEnemyEntryTimed(EnemyMedusa, 1, MEDUSA["YELLOW_BASE_M10_P3"], 60*14)
             },
@@ -520,7 +523,7 @@ else
             {
                 WaveEnemyEntryAlways(EnemyShooter, 2, SHOOTER["WHITE_BASE"]),
                 WaveEnemyEntryAlways(EnemyShooter, 1, SHOOTER["FUSION_BASE"]),
-                WaveEnemyEntryOnTrigger(EnemyKamikaze, 1, KAMIKAZE["WHITE_BASE"], TRIGGER.WITH_4_AT_1_5_TIME)
+                WaveEnemyEntryOnTrigger(EnemyZombieShip, 1, ZOMBIE_KAMIKAZE["WHITE_BIG"], TRIGGER.WITH_4_AT_1_5_TIME)
             }
         )
     )
@@ -602,10 +605,9 @@ else
         Wave(
             {
                 WaveEnemyEntryOnStart(EnemyKamikaze, 1, KAMIKAZE["QUASAR"]),
-
-                WaveEnemyEntryModTime(EnemyKamikaze, 1, KAMIKAZE["QUASAR"], 59),
-                WaveEnemyEntryModTime(EnemyKamikaze, 1, KAMIKAZE["QUASAR"], 79),
-                WaveEnemyEntryModTime(EnemyKamikaze, 1, KAMIKAZE["QUASAR"], 101),
+                WaveEnemyEntryModTime(EnemyKamikaze, 1, KAMIKAZE["QUASAR"], 99),
+                WaveEnemyEntryModTime(EnemyZombieShip, 2, ZOMBIE_KAMIKAZE["QUASAR"], 109),
+                WaveEnemyEntryModTime(EnemyKamikaze, 1, KAMIKAZE["QUASAR"], 141),
             }
         )
     )

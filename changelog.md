@@ -1,7 +1,16 @@
+# Special Thanks:
+  * NotYet
+  * Jampoy
+
+# 1.4b13
+  * Added new enemy type "zombie kamekaze."
+  * Modified waves to add "zombie kamekaze" enemy.
+  * Rebalance pass on waves: HP, EXP.
+
 # 1.3b12
   * Changed and added new garbage colletion variables.
-  * Modifed GC algorithm
-  * Fixed memory issue
+  * Modifed GC algorithm.
+  * Fixed memory issue.
 
 # 1.3b11
   * Fixed visual bug.
@@ -10,14 +19,14 @@
   * Manual garbage colletion to increase performance.
 
 # 1.3b10
-  * Added secret weapon
-  * hp/damage balance pass
-  * Rebalance of some waves
-  * Hardmode rebalance
-  * Added visuals
+  * Added secret weapon.
+  * hp/damage balance pass.
+  * Rebalance of some waves.
+  * Hardmode rebalance.
+  * Added visuals.
 
 # 1.2b9
-  * Sped up track "boss".
+  * Sped up track "boss."
   * Balance pass and tweak.
   
 # 1.2b8

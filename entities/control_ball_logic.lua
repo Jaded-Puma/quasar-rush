@@ -2,9 +2,9 @@ ControlBallEntityLogic = lazy.extend("ControlBallEntityLogic", Entity)
 
 function ControlBallEntityLogic:constructor(entity)
     self.control_box_x = 0
-    self.control_box_y = 120 - 16
+    self.control_box_y = 120 - 16 * 3
     self.control_box_w = 200
-    self.control_box_h = 16 + 16
+    self.control_box_h = 16 * 4
 
     self.entity = entity
 

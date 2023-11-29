@@ -13,7 +13,9 @@ function EnemyZombieShip:constructor(game_logic, config)
     self.logic = EnemyZombieShipLogic(self)
     self.renderer = EnemyZombieShipRenderer(self)
 
-    self.render_prio = UTILITY.set_draw_priority(1, self.logic.use_alt_pal, self.logic.pal_mode)
+    local prio = config[7] and 4 or 1
+
+    self.render_prio = UTILITY.set_draw_priority(prio, self.logic.use_alt_pal, self.logic.pal_mode)
 end
 
 function EnemyZombieShip:update(dt)
@@ -30,7 +32,7 @@ function EnemyZombieShip:spawn()
     if self.logic.spawn_mode == 1 then
         for i = 1, 6 do
             local x = math.random(1, CONFIG.GAME.VIEWPORT.W - (16 * self.logic.size) - 1)
-            local y = -(16 * self.logic.size)
+            local y = -( (16+8) * self.logic.size)
             local w = 16 * self.logic.size
             local h = 16 * self.logic.size
 
@@ -52,7 +54,7 @@ function EnemyZombieShip:spawn()
         end
     elseif self.logic.spawn_mode == 2 or self.logic.spawn_mode == 3 then
         local w = 16 * self.logic.size + 2
-        local h = 16 * self.logic.size
+        local h = (16 + 8) * self.logic.size
         local count = math.floor(CONFIG.GAME.VIEWPORT.W / w)  + 2
 
         local total_w = w * count

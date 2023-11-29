@@ -5,6 +5,8 @@ function EnemyZombieShipRenderer:constructor(entity)
 
     self.animation = ModAnimate({320, 352}, 21, 2)
     self.animation_alt = ModAnimate({416, 448}, 51, 2)
+
+    self.spike = ModAnimate({489, 489}, 5, 1)
 end
 
 function EnemyZombieShipRenderer:render()
@@ -28,6 +30,12 @@ function EnemyZombieShipRenderer:render()
     self.entity.logic.flashing:render_function(
         function()
             anim:render(FRAME, self.entity.x + camera.xs, self.entity.y + camera.ys, size)
+            
+            if self.entity.logic.kamikaze then
+                local x_o, y_o = (16 * size) / 2 - (8 * size) / 2, 16 * size - size - 1
+                self.spike:render(FRAME, self.entity.x + camera.xs + x_o, self.entity.y + camera.ys + y_o, size)
+            end
+            
         end
     )
     lazy.tic.palette_reset()

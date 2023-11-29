@@ -19,41 +19,61 @@ end
 local speed = UTILITY.get_num_spread(0.24, 1.14, 6)
 
 local CONFIG_ZOMBIE = {
-    -- hp/speed/pal/pal_mode/size/spawn_mode
-    ["GREEN_BASE"]  = {10, speed[1], false, 1, 1, 1}, 
-    ["BLUE_BASE"]   = {20, speed[2], false, 2, 1, 1},
-    ["YELLOW_BASE"] = {20, speed[3], false, 3, 1, 1},
-    ["RED_BASE"]    = {30, speed[4], false, 4, 1, 1},
-    ["PURPLE_BASE"] = {30, speed[5], false, 5, 1, 1},
-    ["WHITE_BASE"]  = {40, speed[6], false, 6, 1, 1},
-    ["FUSION_BASE"] = {50, speed[7], false, 7, 1, 1},
+    -- hp/speed/pal/pal_mode/size/spawn_mode/kamikaze
+    ["GREEN_BASE"]  = {10, speed[1], false, 1, 1, 1, false}, 
+    ["BLUE_BASE"]   = {20, speed[2], false, 2, 1, 1, false},
+    ["YELLOW_BASE"] = {20, speed[3], false, 3, 1, 1, false},
+    ["RED_BASE"]    = {30, speed[4], false, 4, 1, 1, false},
+    ["PURPLE_BASE"] = {30, speed[5], false, 5, 1, 1, false},
+    ["WHITE_BASE"]  = {40, speed[6], false, 6, 1, 1, false},
+    ["FUSION_BASE"] = {50, speed[7], false, 7, 1, 1, false},
 
-    ["DEBUG_CORRUPT"] = {-1, 1.32, true, 2, 1, 3},
+    ["DEBUG_CORRUPT"] = {-1, 1.32, true, 2, 1, 3, false},
 
-    ["BOSS"] = {150, 0.12, true, 2, 2, 2},
+    ["BOSS"] = {150, 0.12, true, 2, 2, 2, false},
 
-    ["IMMUNE"] = {-1, 0.12, false, 5, 1, 1},
+    ["IMMUNE"] = {-1, 0.12, false, 5, 1, 1, false},
 }
-CONFIG_ZOMBIE["GREEN_BASE_IMMUNE"] = modify(CONFIG_ZOMBIE["GREEN_BASE"], -1, NONE, NONE, NONE, NONE, NONE)
-CONFIG_ZOMBIE["BLUE_BASE_SLOW"] = modify(CONFIG_ZOMBIE["BLUE_BASE"], NONE, 0.20, NONE, NONE, NONE, NONE)
-CONFIG_ZOMBIE["FUSION_BASE_S3_SLOW"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, 0.46, NONE, NONE, NONE, 3)
-CONFIG_ZOMBIE["RED_BASE_M2"] = modify(CONFIG_ZOMBIE["RED_BASE"], NONE, NONE, NONE, NONE, NONE, 2)
-CONFIG_ZOMBIE["FUSION_BASE_WALL"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, NONE, NONE, NONE, NONE, 2)
+CONFIG_ZOMBIE["GREEN_BASE_IMMUNE"] = modify(CONFIG_ZOMBIE["GREEN_BASE"], -1, NONE, NONE, NONE, NONE, NONE, NONE)
+CONFIG_ZOMBIE["BLUE_BASE_SLOW"] = modify(CONFIG_ZOMBIE["BLUE_BASE"], NONE, 0.20, NONE, NONE, NONE, NONE, NONE)
+CONFIG_ZOMBIE["FUSION_BASE_S3_SLOW"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, 0.46, NONE, NONE, NONE, 3, NONE)
+CONFIG_ZOMBIE["RED_BASE_M2"] = modify(CONFIG_ZOMBIE["RED_BASE"], NONE, NONE, NONE, NONE, NONE, 2, NONE)
+CONFIG_ZOMBIE["FUSION_BASE_WALL"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, NONE, NONE, NONE, NONE, 2, NONE)
 
-CONFIG_ZOMBIE["WHITE_BASE_SLOW"] = modify(CONFIG_ZOMBIE["WHITE_BASE"], NONE, 0.5, NONE, NONE, 2, NONE)
+CONFIG_ZOMBIE["WHITE_BASE_SLOW"] = modify(CONFIG_ZOMBIE["WHITE_BASE"], NONE, 0.5, NONE, NONE, 2, NONE, NONE)
 
-CONFIG_ZOMBIE["BOSS_1"] = modify(CONFIG_ZOMBIE["BOSS"], 60, NONE, NONE, NONE, 1, NONE)
-CONFIG_ZOMBIE["BOSS_2"] = modify(CONFIG_ZOMBIE["BOSS"], NONE, NONE, NONE, NONE, NONE, NONE)
+CONFIG_ZOMBIE["BOSS_1"] = modify(CONFIG_ZOMBIE["BOSS"], 60, NONE, NONE, NONE, 1, NONE, NONE)
+CONFIG_ZOMBIE["BOSS_2"] = modify(CONFIG_ZOMBIE["BOSS"], NONE, NONE, NONE, NONE, NONE, NONE, NONE)
 
-CONFIG_ZOMBIE["QUASAR_WALL"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], -1, 0.80, true, NONE, NONE, 3)
-CONFIG_ZOMBIE["QUASAR_BIG"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], -1, 0.80, true, NONE, 2, 3)
+CONFIG_ZOMBIE["QUASAR_WALL"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], -1, 0.80, true, NONE, NONE, 3, NONE)
+CONFIG_ZOMBIE["QUASAR_BIG"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], -1, 0.80, true, NONE, 2, 3, NONE)
 
-CONFIG_ZOMBIE["QUASAR_SUPPORT"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], 120, 0.24, true, NONE, 2, NONE)
+CONFIG_ZOMBIE["QUASAR_SUPPORT"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], 120, 0.24, true, NONE, 2, NONE, NONE)
 
-CONFIG_ZOMBIE["BLUE_BASE_SPECIAL"]   = modify(CONFIG_ZOMBIE["BLUE_BASE"], 60, NONE, NONE, NONE, 2, NONE)
-CONFIG_ZOMBIE["YELLOW_BASE_SPECIAL"] = modify(CONFIG_ZOMBIE["YELLOW_BASE"], 60, NONE, NONE, NONE, 2, NONE)
-CONFIG_ZOMBIE["RED_BASE_SPECIAL"]    = modify(CONFIG_ZOMBIE["RED_BASE"], 60, NONE, NONE, NONE, 2, NONE)
+CONFIG_ZOMBIE["BLUE_BASE_SPECIAL"]   = modify(CONFIG_ZOMBIE["BLUE_BASE"], 60, NONE, NONE, NONE, 2, NONE, NONE)
+CONFIG_ZOMBIE["YELLOW_BASE_SPECIAL"] = modify(CONFIG_ZOMBIE["YELLOW_BASE"], 60, NONE, NONE, NONE, 2, NONE, NONE)
+CONFIG_ZOMBIE["RED_BASE_SPECIAL"]    = modify(CONFIG_ZOMBIE["RED_BASE"], 60, NONE, NONE, NONE, 2, NONE, NONE)
 
+local CONFIG_ZOMBIE_KAMIKAZE = {
+    ["GREEN_BASE"]  = modify(CONFIG_ZOMBIE["GREEN_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+    ["BLUE_BASE"]   = modify(CONFIG_ZOMBIE["BLUE_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+    ["YELLOW_BASE"] = modify(CONFIG_ZOMBIE["YELLOW_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+    ["RED_BASE"]    = modify(CONFIG_ZOMBIE["RED_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+    ["PURPLE_BASE"] = modify(CONFIG_ZOMBIE["PURPLE_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+    ["WHITE_BASE"]  = modify(CONFIG_ZOMBIE["WHITE_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+    ["FUSION_BASE"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+
+    ["DEBUG_CORRUPT"] = modify(CONFIG_ZOMBIE["DEBUG_CORRUPT"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+
+    ["BOSS"] = modify(CONFIG_ZOMBIE["BOSS"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+
+    ["IMMUNE"] = modify(CONFIG_ZOMBIE["IMMUNE"], NONE, NONE, NONE, NONE, NONE, NONE, true),
+}
+
+CONFIG_ZOMBIE_KAMIKAZE["BOSS_1"] = modify(CONFIG_ZOMBIE["BOSS_1"], 30, 0.19, NONE, NONE, NONE, 1, true )
+CONFIG_ZOMBIE_KAMIKAZE["BOSS_2"] = modify(CONFIG_ZOMBIE["BOSS_1"], 40, 0.89, NONE, NONE, NONE, 1, true)
+CONFIG_ZOMBIE_KAMIKAZE["WHITE_BIG"] = modify(CONFIG_ZOMBIE["WHITE_BASE"], 150, NONE, NONE, NONE, 2, NONE, true)
+CONFIG_ZOMBIE_KAMIKAZE["QUASAR"] = modify(CONFIG_ZOMBIE["FUSION_BASE"], 120, NONE, true, NONE, NONE, NONE, true)
 
 
 local speed = UTILITY.get_num_spread(0.50, 1.15, 6)
@@ -120,7 +140,7 @@ local CONFIG_MEDUSA = {
     -- 10 top down sin
     -- 11 helix
     -- 12 opposite sin
-    ["GREEN_BASE"]  = {10, 0.62, false, 1, 1, 0},
+    ["GREEN_BASE"]  = {10, 0.52, false, 1, 1, 0},
     ["BLUE_BASE"]   = {10, 0.70, false, 2, 1, 2},
     ["YELLOW_BASE"] = {20, 0.80, false, 3, 2, 3},
     ["RED_BASE"]    = {20, 0.90, false, 4, 3, 4},
@@ -204,7 +224,7 @@ local CONFIG_BOUNCE = {
 CONFIG_BOUNCE["GREEN_IMMUNE"] = modify(CONFIG_BOUNCE["GREEN_BASE"], -1, NONE, NONE, NONE, NONE)
 
 CONFIG_BOUNCE["QUASAR_1"] = modify(CONFIG_BOUNCE["FUSION_BASE"], 80, 1.5, true, 7, NONE)
-CONFIG_BOUNCE["QUASAR_2"] = modify(CONFIG_BOUNCE["FUSION_BASE"], 10000, 2.5, true, 7, NONE)
+CONFIG_BOUNCE["QUASAR_2"] = modify(CONFIG_BOUNCE["FUSION_BASE"], -1, 2.5, true, 7, NONE)
 
 
 local CONFIG_ORGANIC = {
@@ -229,17 +249,17 @@ CONFIG_ORGANIC["QUASAR"] = modify(CONFIG_ORGANIC["FUSION_BASE"], 440, 17, true, 
 
 local CONFIG_SEEKER = {
     -- hp / pal / pal_mode / mode / proj_speed / proj_acc / atk_frame / accuracy / spawn_mode
-    ["GREEN_BASE"]  = {40, false, 1, 2, 0.70, 0.0, 190, 0.025, 2},
-    ["BLUE_BASE"]   = {40, false, 2, 2, 0.65, 0.0, 170, 0.019, 2},
-    ["YELLOW_BASE"] = {50, false, 3, 2, 0.60, 0.0, 150, 0.022, 2},
-    ["RED_BASE"]    = {60, false, 4, 2, 0.50, 0.0, 150, 0.028, 2},
-    ["PURPLE_BASE"] = {70, false, 5, 2, 0.35, 0.0, 150, 0.028, 2},
-    ["WHITE_BASE"]  = {80, false, 6, 2, 3.70, 0.0, 100, 0.0, 2},
-    ["FUSION_BASE"] = {80, false, 7, 2, 2.70, 0.0, 150, 0.29, 2},
+    ["GREEN_BASE"]  = {50, false, 1, 2, 0.70, 0.0, 190, 0.025, 2},
+    ["BLUE_BASE"]   = {50, false, 2, 2, 0.65, 0.0, 170, 0.019, 2},
+    ["YELLOW_BASE"] = {60, false, 3, 2, 0.60, 0.0, 150, 0.022, 2},
+    ["RED_BASE"]    = {70, false, 4, 2, 0.50, 0.0, 150, 0.028, 2},
+    ["PURPLE_BASE"] = {80, false, 5, 2, 0.35, 0.0, 150, 0.028, 2},
+    ["WHITE_BASE"]  = {90, false, 6, 2, 3.70, 0.0, 100, 0.0, 2},
+    ["FUSION_BASE"] = {90, false, 7, 2, 2.70, 0.0, 150, 0.29, 2},
 
     ["DEBUG_CORRUPT"] = {9999, true, 3, 3, 0.3, 0.0085, 15, 0.00023, 3},
 
-    ["BOSS"] = {480, true, 2, 2, 0.0, 0.045, 65, 0.19, 3},
+    ["BOSS"] = {1480, true, 2, 2, 0.0, 0.045, 65, 0.10, 3},
 
     ["IMMUNE"] = {30, false, 1, 1, 0.7, 0.0, 170, 0.0002, 2},
 }
@@ -267,6 +287,7 @@ WAVE_KEY = {
 
 WAVE_CONFIG = {
     ZOMBIE = CONFIG_ZOMBIE,
+    ZOMBIE_KAMIKAZE = CONFIG_ZOMBIE_KAMIKAZE,
     SHOOTER = CONFIG_SHOOTER,
     PEEK = CONFIG_PEEK,
     MEDUSA = CONFIG_MEDUSA,

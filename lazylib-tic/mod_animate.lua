@@ -20,7 +20,7 @@ end
 --- @param frame_total number the total number of frames since application started
 --- @param x number the x coordinate to draw the sprite
 --- @param y number the y coordinate to draw the sprite
---- @param size number|nil the y coordinate to draw the sprite
+--- @param size number|nil draw size
 --- @param flip number|nil optional draw flip
 function ModAnimate:render(frame_total, x, y, size, flip)
     size = size or 1
